@@ -3,8 +3,8 @@
 # frozen_string_literal: true
 
 # Add the `lib/` folder to the load-path so we can `require "sales_taxes"`
-$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
-require "sales_taxes"   # (will be defined later)
+require 'sales_taxes' # (will be defined later)
 
-puts "Sales Taxes CLI – work in progress"
+puts 'Sales Taxes CLI – work in progress'

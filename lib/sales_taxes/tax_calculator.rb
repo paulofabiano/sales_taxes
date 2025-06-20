@@ -1,12 +1,11 @@
 # frozen_string_literal: true
-require "bigdecimal"
-require "bigdecimal/util"
+
+require 'bigdecimal'
+require 'bigdecimal/util'
 
 module SalesTaxes
   class TaxCalculator
     ROUND_FACTOR = 0.05.to_d.freeze
-
-    def initialize; end
 
     private
 
