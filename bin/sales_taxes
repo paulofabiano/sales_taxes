@@ -1,10 +1,34 @@
 #!/usr/bin/env ruby
-# bin/sales_taxes
 # frozen_string_literal: true
 
-# Add the `lib/` folder to the load-path so we can `require "sales_taxes"`
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+require 'optparse'
+require 'json'
+require 'sales_taxes'
 
-require 'sales_taxes' # (will be defined later)
+options = { format: :text }
+OptionParser.new do |opts|
+  opts.banner = 'Usage: sales_taxes [-j] [file]'
 
-puts 'Sales Taxes CLI – work in progress'
+  opts.on('-j', '--json', 'Output JSON instead of plain text') do
+    options[:format] = :json
+  end
+end.parse!
+
+io = ARGV.empty? ? $stdin : File.open(ARGV.first)
+basket   = SalesTaxes::InputParser.new.parse(io)
+receipt  = SalesTaxes::Receipt.new(basket)
+
+if options[:format] == :json
+  puts JSON.pretty_generate({
+                              items: basket.map do |it|
+                                { quantity: it.quantity,
+                                  name: it.product.name,
+                                  price: it.total_price.to_s('F') }
+                              end,
+                              sales_taxes: receipt.send(:sales_taxes).to_s('F'),
+                              total: receipt.send(:total).to_s('F')
+                            })
+else
+  puts receipt
+end
