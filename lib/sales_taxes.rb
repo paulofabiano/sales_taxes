@@ -11,7 +11,6 @@ require_relative 'sales_taxes/tax_rule'
 require_relative 'sales_taxes/basket_item'
 require_relative 'sales_taxes/basket'
 require_relative 'sales_taxes/input_parser'
-require_relative 'sales_taxes/receipt'
 
 module SalesTaxes
   VERSION = '0.1.0'
