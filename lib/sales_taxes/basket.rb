@@ -21,6 +21,8 @@ module SalesTaxes
     end
 
     def freeze
+      return self if frozen?
+
       @sealed = true
       @items.freeze
       super
