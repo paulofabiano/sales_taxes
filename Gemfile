@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "rspec",   "~> 3.13", group: :development
-gem "rubocop", "~> 1.77", require: false, group: :development
-gem "bigdecimal"
+gem 'bigdecimal'
+
+group :development do
+  gem 'rubocop', '~> 1.77', require: false
+  gem 'rubocop-rspec', '~> 3.6'
+end
+
+group :test do
+  gem 'rspec', '~> 3.13'
+end
