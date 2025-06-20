@@ -236,6 +236,9 @@ Style/DigChain:
 Style/DirEmpty:
   Enabled: true
 
+Style/Documentation:
+  Enabled: false
+
 Style/DocumentDynamicEvalDefinition:
   Enabled: true
 
