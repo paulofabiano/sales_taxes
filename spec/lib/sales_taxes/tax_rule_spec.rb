@@ -9,7 +9,7 @@ RSpec.describe SalesTaxes::TaxRule do
   describe '#applicable?' do
     it 'raises NotImplementedError when called directly' do
       product = double('product')
-      
+
       expect { tax_rule.applicable?(product) }
         .to raise_error(NotImplementedError)
     end
